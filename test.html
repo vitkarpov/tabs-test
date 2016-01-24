@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Communication between tabs</title>
+</head>
+<body>
+    <button class="send">Send a message</button>
+
+    <script src="proxy.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        var proxy = new Proxy();
+        var button = document.querySelector('.send');
+
+        proxy.onMessage = function(message) {
+            alert(message);
+        };
+        button.addEventListener('click', function() {
+            proxy.send('hello from ' + document.domain);
+        });
+    </script>
+</body>
+</html>
